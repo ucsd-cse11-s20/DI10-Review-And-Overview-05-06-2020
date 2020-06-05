@@ -18,7 +18,7 @@ But right now, let's review some of the things we learned about the past two wee
 Last week, we learned that the Java `int` type cannot represent all integers, but is in fact bounded between -2<sup>31</sup> and 2<sup>31</sup>-1 (or `[-2147483648, 2147483647)`). If we try to represent a number that is outside of these limits, Java might show and error and not build:
 
 ```java
-int x = 2147483648
+int x = 2147483648;
 ```
 Causes:
 ```
@@ -27,7 +27,7 @@ error: integer number too large
            ^
 ```
 
-But if we go out of bounds as a result of some computation (where Java won't know that it is occurring), the numbers instead wrap around from the smallest to the largest possible integer!
+But if we go out of bounds as a result of some computation (where Java won't know that it is occurring), the numbers instead wrap around between the smallest and the largest possible integer!
 
 ```java
 // oneMoreThanMaxInt == -2147483648
@@ -38,7 +38,7 @@ int oneLessThanMinInt = -2147483648 - 1
 ```
 
 ### Java Primitives
-`int`, `boolean` and `double` are arguable the most useful primitive types in Java, and the default type of `true`/`false`, whole numbers, and decimal numbers. But they are not the only primitives. Here is the list of primitive types in Java, and how to represent them:
+`int` and `double` are the default types of whole and decimal numbers in Java. But they are not the only primitives. Here is the list of primitive types in Java, and how to represent them:
 
 ```java
 // Whole numbers
@@ -48,7 +48,7 @@ int   i = 1;  // Integer, bounded between -2^31 and 2^31 - 1
 long  l = 1L; // Long,    bounded between -2^63 and 2^63 - 1
 
 // Decimal numbers
-float  f = 1.0f; // Less "precise" than doubles
+float  f = 1.0f;
 double d = 1.0; 
 
 // Special types
@@ -57,7 +57,7 @@ char c = 'a'; // Represents a single character. Mostly used when looping over ch
 boolean b = false; // Either `true` or `false`
 ```
 
-Each of these types has a matching Reference Type, and for the number types, you can get their maximum and minimum representable values using the `MAX_VALUE` and `MIN_VALUE` static fields on those classes:
+Each of these types has a matching reference type, and for the number types, you can get their maximum and minimum representable values using the `MAX_VALUE` and `MIN_VALUE` static fields on those classes:
 
 ```java
 Byte      y = 1;
@@ -68,12 +68,15 @@ Float     f = 1.0f;
 Double    d = 1.0;
 Character c = 'a';
 Boolean   b = false;
+
+short largestShort = Short.MAX_VALUE;
+Float smallestFloat = Float.MIN_VALUE;
 ```
 
 For more information about these, and some cool ways you can represent them in Java, see [The Java<sup>TM</sup> Tutorials](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html) on Primitive Data Types!
 
 ### Overriding methods
-Though it sounds similar, "overriding" and "overloading" methods have two different meanings in Java. Overriding a method means providing a different implementation of an existing method in Java. It comes up most often when a class that extends some superclass wants to behave differently for some method that the superclass provides. We will see examples of this in the [Object section](#the-object-class), but for now, keep in mind that to override a method, the method's header must be _identical_ to the method in the superclass. The body then can be something different.
+Though it sounds similar, "overriding" and "overloading" methods have two different meanings in Java. Overriding a method means providing a different implementation of an existing method. It comes up most often when a class that extends some superclass wants to behave differently for some method that the superclass provides. We will see examples of this in the [Object section](#the-object-class), but for now, keep in mind that to override a method, the method's header must be _identical_ to the method in the superclass. The body then can be something different.
 
 ### The `instanceof` operator
 `instanceof` is an operator in Java that, though not frequently used, is sometimes necessary. It is used between an object and the name of a class, and returns `true` if that object's type is equal to or is a subclass of that class. However, if the object we are using cannot be an instance of the class, Java will not build, but will instead show an error:
@@ -106,7 +109,7 @@ boolean isCAnInstanceOfB = c instanceof B;
 ```
 
 ### Casting
-Similar to `instanceof`, casting is a Java feature that is used mostly only where necessary. We have seen that we can create an instance of a class, and assign it to a field or variable of a superclass's type. Java will then use treat that instance as having the type of the superclass, hiding any fields or methods that is only defined on the subclass. But sometimes, we might need to directly access a field or method that is only defined on the subclass. In these cases, we can _cast_ the object to the subclass type, which forces Java to treat that object as an instance of the subclass, giving us access to the fields or methods we need:
+Similar to `instanceof`, casting is a Java feature that is used mostly only where necessary. We have seen that we can create an instance of a class, and assign it to a field or variable of a superclass's type. Java will then treat that instance as having the type of the superclass, hiding any fields or methods that is only defined on the subclass. But sometimes, we might need to directly access a field or method that is only defined on the subclass. In these cases, we can _cast_ the object to the subclass type, which forces Java to treat that object as an instance of the subclass, giving us access to the fields or methods we need:
 
 ```java
 class A {}
@@ -119,7 +122,7 @@ class B extends A {
     }
 }
 
-class C extends B { // Note that this is different to the example above!
+class C extends B { // Note that this is different to the example in `instanceof`!
     int y;
 
     C(int x, int y) {
@@ -215,7 +218,7 @@ class Point {
 }
 ```
 
-Most pre-defined classes in Java also override these methods to give us better String outputs (see the `Boolean` class for instance) and let us check equality (see the `String` class for example). One notable exception to this are arrays. Even though arrays are reference types and we can call `toString` and `equals` on them, the `toString` does not give us a human-readable output, and the `equals` does not call compare the array's contents using their `equals` methods, which can have surprising results. Fortunately, Java provides the `Arrays` class as a helper class which defined `toString` and `equals` _static_ methods we can call on arrays to perform these operations:
+Most pre-defined classes in Java also override these methods to give us better String outputs (see the `Boolean` class for instance) and let us check equality (see the `String` class for example). One notable exception to this are arrays. Even though arrays are reference types and we can call `toString` and `equals` on them, the `toString` does not give us a human-readable output, and the `equals` does not compare the array's contents using their `equals` methods, which can have surprising results. Fortunately, Java provides the `Arrays` class as a helper class which defines `toString` and `equals` _static_ methods we can call on arrays to perform these operations:
 
 ```java
 import java.util.Arrays;
@@ -245,26 +248,62 @@ For most of this quarter, we have been writing all related pieces of code in a s
 The [pre-recorded lecture videos](https://drive.google.com/drive/folders/1OnchIdC7C2XojUB8xI6sCih2zsUGSuhi?usp=sharing) cover this in much more detail, but here is a short example on the `private` modifier:
 
 ```java
+
+/**
+ * This class is a wrapper around an integer,
+ * and by making it private, let's us always
+ * keep track of the total number of accesses
+ * to that integer.
+ */
 class A {
-    private int usesOfX;
+    private int count;
     private int x;
 
     A(int x) {
         this.x = x;
-        this.usesOfX = 0;
+        this.count = 0;
     }
 
     public int getX() {
-        this.usesOfX += 1;
+        this.count += 1;
         return this.x;
     }
 
     public void setX(int x) {
-        this.usesOfX += 1;
+        this.count += 1;
         this.x = x;
     }
+
+    public int getAccessCount() {
+        return this.count;
+    }
 }
+
+// ...
+
+A a = new A(5);
+
+// This causes an error:
+// error: x has private access in A
+//   int error = a.x;
+//               ^_^
+int error = a.x;
+
+// Let's access x a bunch
+int currentValue = a.getX();
+a.setX(a.getX() + 3); // Note that we access x twice here!
+int newValue = a.getX();
+
+int accessesToX = a.getAccessCount(); // accessesToX == 4
 ```
 
 ### Recursion
-Recursion is not a particular Java feature, but rather a common topic in Computer Science in general. It refers to the idea of a method that may call itself, and while there are some really interesting properties for methods like this, there isn't anything particularly special about them, and in fact we have been writing recursive methods since very early in this course. Thinking of recursive methods as such can be somewhat more challenging though, so I put the topic here to encourage you to revisit and understand the trace of the [File System](https://drive.google.com/file/d/17X29IkHTGWzX0fuxXbLPocEOiS2kG6aM/view?usp=sharing) code we wrote in the final lectures.
+Recursion is not a particular Java feature, but rather a common topic in Computer Science in general. It refers to the idea of a method that may call itself, and while there are some really interesting properties for methods like this, there isn't anything particularly special about them. In fact we have been writing recursive methods since very early in this course. Thinking of recursive methods as such can be somewhat more challenging though, so I put the topic here to encourage you to revisit and understand the trace of the [File System](https://drive.google.com/file/d/17X29IkHTGWzX0fuxXbLPocEOiS2kG6aM/view?usp=sharing) code we wrote in the final lectures.
+
+## Problems
+
+### Problem 1: Recursive Not
+Recall the queries we needed to implement for [PA7](https://ucsd-cse11-s20.github.io/pa7/). Implement a method `static Query toQuery(String queryString)` that accepts a single query string, and returns it as a `Query` object. You _must not_ duplicate any code for the `not` case, but instead call the `toQuery` method recursively to get the `Query` object representing the inner query we are negating.
+
+### Problem 2: Merge
+Recall the `merge` method from [PA8](https://ucsd-cse11-s20.github.io/pa8/#list-methods). Write a `merge` method that accepts two sorted lists of integers, and returns a new list containing all elements from both lists in order. You may define as many variables as you need, but the method can contain only _a single_ loop of any kind. You can assume the input lists do not contain any `null` values.
