@@ -1,5 +1,5 @@
 # Review and Overview
-This is the final discussion for CSE11 this quarter, so while the folliwng will review some of the new concepts we learned since the last discussion, I would like to also encourage you to go back and look over the other review sheets, since they provide a decent summary of some of the things we learned this quarter. Those review sheets cover:
+This is the final discussion for CSE11 this quarter, so while the following will review some of the new concepts we learned since the last discussion, I would like to also encourage you to go back and look over the other review sheets, since they provide a decent summary of some of the things we learned this quarter. Those review sheets cover:
 
 - [The boolean `Not` operator, and the String `contains()` method](https://github.com/ucsd-cse11-s20/DI03-Class-Drills-17-04-2020/blob/master/ProblemSheet.md)
 - [Interfaces and Abstract Classes](https://github.com/ucsd-cse11-s20/DI04-Interfaces-24-04-2020/blob/master/ProblemSheet.md)
@@ -215,7 +215,7 @@ class Point {
 }
 ```
 
-Most pre-defined classes in Java also override these methods to give us better String outputs (see the `Boolean` class for instance) and let us check equality (see the `String` class for example). One notable exception to this are arrays. Even though arrays are reference types and we can call `toString` and `equals` on them, the `toString` does not give us a human-readable output, and the `equals` does not call compare the array's contents using their `equals` methods, which can have surprising results. Fortunately, Java provides the `Arrays` class as a helper class which defined `toString` and `equals` _statis_ methods we can call on arrays to perform these operations:
+Most pre-defined classes in Java also override these methods to give us better String outputs (see the `Boolean` class for instance) and let us check equality (see the `String` class for example). One notable exception to this are arrays. Even though arrays are reference types and we can call `toString` and `equals` on them, the `toString` does not give us a human-readable output, and the `equals` does not call compare the array's contents using their `equals` methods, which can have surprising results. Fortunately, Java provides the `Arrays` class as a helper class which defined `toString` and `equals` _static_ methods we can call on arrays to perform these operations:
 
 ```java
 import java.util.Arrays;
