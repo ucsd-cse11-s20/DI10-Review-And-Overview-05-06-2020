@@ -4,9 +4,9 @@ Zoom recording: *COMING SOON*
 
 Problem sheet for this discussion: 
 
-*COMING SOON*
+https://github.com/ucsd-cse11-s20/DI10-Review-And-Overview-05-06-2020/blob/master/ReviewSheet.md
 
-Readings reviewd in this discussion:
+Readings reviewed in this discussion:
 - [Defining Sameness for Complex Data](https://course.ccs.neu.edu/cs2510h/lecture11.html)
 - [Java Details](https://cseweb.ucsd.edu/classes/sp17/cse11-a/lecture28.html)
 
