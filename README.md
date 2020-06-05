@@ -6,6 +6,14 @@ Problem sheet for this discussion:
 
 https://github.com/ucsd-cse11-s20/DI10-Review-And-Overview-05-06-2020/blob/master/ProblemSheet.md
 
+Starter Code:
+
+https://github.com/ucsd-cse11-s20/DI10-Review-And-Overview-05-06-2020/releases/download/1.0/di10.zip
+
+Solution:
+
+*COMING SOON*
+
 Readings reviewed in this discussion:
 - [Defining Sameness for Complex Data](https://course.ccs.neu.edu/cs2510h/lecture11.html)
 - [Java Details](https://cseweb.ucsd.edu/classes/sp17/cse11-a/lecture28.html)
