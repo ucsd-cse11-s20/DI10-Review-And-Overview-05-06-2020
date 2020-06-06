@@ -12,7 +12,9 @@ https://github.com/ucsd-cse11-s20/DI10-Review-And-Overview-05-06-2020/releases/d
 
 Solution:
 
-*COMING SOON*
+https://github.com/ucsd-cse11-s20/DI10-Review-And-Overview-05-06-2020/blob/master/Discussion10Solution.java
+
+(For the `Query` problem, see the [PA9 Starter Code](https://github.com/ucsd-cse11-s20/pa9-starter))
 
 Readings reviewed in this discussion:
 - [Defining Sameness for Complex Data](https://course.ccs.neu.edu/cs2510h/lecture11.html)
